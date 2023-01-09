@@ -5,7 +5,7 @@ connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
 # Declaração da fila
-channel.queue_declare(queue='Opa')
+channel.queue_declare(queue='opa')
 
 # Função de callback para processar a mensagem recebida
 def callback(ch, method, properties, body):
@@ -14,7 +14,7 @@ def callback(ch, method, properties, body):
         f.write(body + '\n')
 
 # Inscreve a função de callback na fila
-channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True)
+channel.basic_consume(queue='opa', on_message_callback=callback, auto_ack=True)
 
 print(' [*] Esperando  mensagem. CTRL+C' para sair)
 channel.start_consuming()
